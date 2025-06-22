@@ -32,7 +32,7 @@ RUN ng add @angular/material --skip-confirmation --theme=indigo-pink --typograph
 
 RUN ng generate component contact-form --standalone --style=css
 
-RUN jq '.projects["front-end"].architect.serve.options.host = "0.0.0.0" | .projects["front-end"].architect.serve.options.allowedHosts = ["ng.home"]' angular.json > tmp.json && mv tmp.json angular.json
+# RUN jq '.projects["front-end"].architect.serve.options.host = "0.0.0.0" | .projects["front-end"].architect.serve.options.allowedHosts = ["ng.home"]' angular.json > tmp.json && mv tmp.json angular.json
 
 # Remove the invalid theme import
 # RUN sed -i "/@angular\/material\/prebuilt-themes\/Custom.css/d" angular.json
