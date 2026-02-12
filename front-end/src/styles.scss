@@ -1,0 +1,17 @@
+@import '@angular/material/prebuilt-themes/azure-blue.css';
+
+
+/* Use regular CSS here */
+body {
+  font-family: Roboto, sans-serif;
+  background-color: #001529;
+  /* Deep Azure Blue background */
+  color: #e0e0e0;
+  /* Light text */
+  margin: 0;
+}
+
+/* Custom styles */
+.mat-toolbar {
+  font-weight: bold;
+}

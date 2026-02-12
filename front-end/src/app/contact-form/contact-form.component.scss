@@ -1,0 +1,23 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: #f5f5f5; Removed to use global dark background */
+}
+
+.register-card {
+    min-width: 400px;
+    max-width: 500px;
+    padding: 24px;
+}
+
+.full-width {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+mat-card-title {
+    margin-bottom: 24px;
+    text-align: center;
+}
