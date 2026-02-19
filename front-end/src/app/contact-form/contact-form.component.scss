@@ -3,52 +3,118 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    // ensure the container allows the background to show through if there was one on it, 
-    // but the background is on body, so this is fine.
 }
 
-.register-card {
-    min-width: 400px;
-    max-width: 500px;
-    padding: 24px;
+.contact-card {
+    display: flex;
+    width: 900px;
+    max-width: 95vw;
+    min-height: 500px;
 
     // Glassmorphism effect
-    background: rgba(255, 255, 255, 0.05); // Very transparent white
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 16px; // Softer corners
-    color: white; // Ensure text is white
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    border-radius: 16px;
+    color: white;
+    overflow: hidden; // Ensure children don't overflow rounded corners
 
-    // Override Angular Material card background if necessary
     &.mat-mdc-card {
-        background-color: transparent; // or the rgba value if mat-card sets a color
-        // Note: new MDC components might use --mdc-elevated-card-container-color
-        --mdc-elevated-card-container-color: rgba(255, 255, 255, 0.05);
-        --mdc-outlined-card-container-color: rgba(255, 255, 255, 0.05);
+        background-color: transparent;
+        --mdc-elevated-card-container-color: transparent;
+        --mdc-outlined-card-container-color: transparent;
     }
+}
+
+.left-section {
+    flex: 1; // 1/3 width
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.2); // Slightly darker background for contrast
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+
+    h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    .decoration {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        pointer-events: none;
+    }
+}
+
+.right-section {
+    flex: 2; // 2/3 width
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+}
+
+.row {
+    display: flex;
+    gap: 16px;
+}
+
+.half-width {
+    flex: 1;
+    width: 100%;
 }
 
 .full-width {
     width: 100%;
-    margin-bottom: 16px;
 }
 
-mat-card-title {
-    margin-bottom: 24px;
-    text-align: center;
-    color: white;
-    font-weight: 300;
-    letter-spacing: 1px;
+// Button Styles
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+
+    .submit-btn {
+        background-color: #e0e0e0; // White/Grey
+        color: #333; // Dark text for contrast
+        padding: 8px 32px;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+    }
 }
+
 
 // Ensure input fields look good on glass
 ::ng-deep .mat-mdc-form-field {
     .mat-mdc-text-field-wrapper {
         background-color: rgba(255, 255, 255, 0.05) !important;
     }
-    
+
     .mat-mdc-form-field-input-control {
         color: white !important;
     }
@@ -57,10 +123,33 @@ mat-card-title {
         color: rgba(255, 255, 255, 0.7) !important;
     }
 
+    .mat-mdc-select-value {
+        color: white !important;
+    }
+
+    .mat-mdc-select-arrow {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+
     // Border color overrides for outlined appearance
     .mdc-notched-outline__leading,
     .mdc-notched-outline__notch,
     .mdc-notched-outline__trailing {
         border-color: rgba(255, 255, 255, 0.3) !important;
+    }
+}
+
+// Fix for select panel background
+::ng-deep .mat-mdc-select-panel {
+    background: rgba(40, 50, 70, 0.95) !important;
+    backdrop-filter: blur(10px);
+
+    .mat-mdc-option {
+        color: white !important;
+
+        &:hover,
+        &.mat-mdc-option-active {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
     }
 }

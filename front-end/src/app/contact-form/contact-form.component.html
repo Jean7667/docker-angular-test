@@ -1,90 +1,88 @@
 <div class="form-container">
-    <mat-card class="register-card">
-        <mat-card-header>
-            <mat-card-title>Register</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="contact-card">
 
-                <!-- Username -->
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Username</mat-label>
-                    <input matInput formControlName="username" placeholder="johndoe">
-                    @if (username?.invalid && (username?.dirty || username?.touched)) {
-                    <mat-error>
-                        @if (username?.hasError('required')) {
-                        Username is <strong>required</strong>
+        <!-- Left Section (1/3) -->
+        <div class="left-section">
+            <h2>Have a question?</h2>
+            <p>If you have any questions, feel free to reach out to us. We'll get back to you as soon as possible.</p>
+            <div class="contact-info">
+                <!-- Add optional contact details here if needed -->
+            </div>
+
+            <div class="decoration">
+                <!-- Optional: Decorative element or icon -->
+                <mat-icon style="transform: scale(3); opacity: 0.2; margin-top: 50px;">email</mat-icon>
+            </div>
+        </div>
+
+        <!-- Right Section (2/3) -->
+        <div class="right-section">
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstName" placeholder="John">
+                        @if (firstName?.invalid && (firstName?.dirty || firstName?.touched)) {
+                        <mat-error>First Name is <strong>required</strong></mat-error>
                         }
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastName" placeholder="Doe">
+                        @if (lastName?.invalid && (lastName?.dirty || lastName?.touched)) {
+                        <mat-error>Last Name is <strong>required</strong></mat-error>
+                        }
+                    </mat-form-field>
+                </div>
+
+                <div class="row">
+                    <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="john@example.com">
+                        @if (email?.invalid && (email?.dirty || email?.touched)) {
+                        <mat-error>
+                            @if (email?.hasError('required')) { Email is <strong>required</strong> }
+                            @if (email?.hasError('email')) { Invalid email address }
+                        </mat-error>
+                        }
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="half-width">
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput formControlName="phoneNumber" placeholder="+1 234 567 890">
+                    </mat-form-field>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Select Topic</mat-label>
+                    <mat-select formControlName="topic">
+                        @for (topic of topics; track topic) {
+                        <mat-option [value]="topic">{{topic}}</mat-option>
+                        }
+                    </mat-select>
+                    @if (topic?.invalid && (topic?.dirty || topic?.touched)) {
+                    <mat-error>Topic is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Message</mat-label>
+                    <textarea matInput formControlName="message" rows="4" placeholder="How can we help you?"></textarea>
+                    @if (message?.invalid && (message?.dirty || message?.touched)) {
+                    <mat-error>
+                        @if (message?.hasError('required')) { Message is <strong>required</strong> }
+                        @if (message?.hasError('minlength')) { Message must be at least 10 characters }
                     </mat-error>
                     }
                 </mat-form-field>
 
-                <!-- Email -->
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="john@example.com">
-                    @if (email?.invalid && (email?.dirty || email?.touched)) {
-                    <mat-error>
-                        @if (email?.hasError('required')) {
-                        Email is <strong>required</strong>
-                        }
-                        @if (email?.hasError('email')) {
-                        Please enter a valid email address
-                        }
-                    </mat-error>
-                    }
-                </mat-form-field>
-
-                <!-- Password -->
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Password</mat-label>
-                    <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password">
-                    <button mat-icon-button matSuffix color="primary" (click)="hidePassword = !hidePassword"
-                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-                        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                    @if (password?.invalid && (password?.dirty || password?.touched)) {
-                    <mat-error>
-                        @if (password?.hasError('required')) {
-                        Password is <strong>required</strong>
-                        }
-                        @if (password?.hasError('minlength')) {
-                        Password must be at least 6 characters
-                        }
-                    </mat-error>
-                    }
-                </mat-form-field>
-
-                <!-- Confirm Password -->
-                <mat-form-field appearance="outline" class="full-width">
-                    <mat-label>Confirm Password</mat-label>
-                    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'"
-                        formControlName="confirmPassword">
-                    <button mat-icon-button matSuffix color="primary"
-                        (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide password'"
-                        [attr.aria-pressed]="hideConfirmPassword">
-                        <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </button>
-                    @if((confirmPassword?.invalid || registerForm.hasError('passwordMismatch')) &&
-                    (confirmPassword?.dirty || confirmPassword?.touched)) {
-                    <mat-error>
-                        @if (confirmPassword?.hasError('required')) {
-                        Confirm Password is <strong>required</strong>
-                        }
-                        @if (registerForm.hasError('passwordMismatch') && !confirmPassword?.hasError('required')) {
-                        Passwords do not match
-                        }
-                    </mat-error>
-                    }
-
-                </mat-form-field>
-
-                <mat-card-actions align="end">
-                    <button mat-raised-button color="primary" type="submit"
-                        [disabled]="registerForm.invalid">Register</button>
-                </mat-card-actions>
+                <div class="actions">
+                    <button mat-raised-button class="submit-btn" type="submit">Send Message</button>
+                </div>
 
             </form>
-        </mat-card-content>
-    </mat-card>
+        </div>
+    </div>
 </div>

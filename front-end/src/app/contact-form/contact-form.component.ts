@@ -1,11 +1,8 @@
 import { Component } from '@angular/core';
 import {
-  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,29 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-
-/** Custom validator to check if password and confirm password match */
-export const passwordMatchValidator: ValidatorFn = (
-  control: AbstractControl
-): ValidationErrors | null => {
-  const password = control.get('password');
-  const confirmPassword = control.get('confirmPassword');
-
-  if (
-    password &&
-    confirmPassword &&
-    password.value !== confirmPassword.value
-  ) {
-    confirmPassword.setErrors({ passwordMismatch: true });
-    return { passwordMismatch: true };
-  } else {
-    // Only clear this specific error if it exists
-    if (confirmPassword?.hasError('passwordMismatch')) {
-      confirmPassword.setErrors(null);
-    }
-    return null;
-  }
-};
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-contact-form',
@@ -47,51 +22,45 @@ export const passwordMatchValidator: ValidatorFn = (
     MatButtonModule,
     MatIconModule,
     MatCardModule,
+    MatSelectModule,
   ],
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.scss',
 })
 export class ContactFormComponent {
-  registerForm: FormGroup;
-  hidePassword = true;
-  hideConfirmPassword = true;
+  contactForm: FormGroup;
+
+  topics: string[] = [
+    'General Inquiry',
+    'Support',
+    'Feedback',
+    'Other'
+  ];
 
   constructor() {
-    this.registerForm = new FormGroup(
-      {
-        username: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [
-          Validators.required,
-          Validators.minLength(6),
-        ]),
-        confirmPassword: new FormControl('', [Validators.required]),
-      },
-      { validators: passwordMatchValidator }
-    );
+    this.contactForm = new FormGroup({
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      phoneNumber: new FormControl(''),
+      topic: new FormControl('', [Validators.required]),
+      message: new FormControl('', [Validators.required, Validators.minLength(10)]),
+    });
   }
 
-  get username() {
-    return this.registerForm.get('username');
-  }
-
-  get email() {
-    return this.registerForm.get('email');
-  }
-
-  get password() {
-    return this.registerForm.get('password');
-  }
-
-  get confirmPassword() {
-    return this.registerForm.get('confirmPassword');
-  }
+  get firstName() { return this.contactForm.get('firstName'); }
+  get lastName() { return this.contactForm.get('lastName'); }
+  get email() { return this.contactForm.get('email'); }
+  get phoneNumber() { return this.contactForm.get('phoneNumber'); }
+  get topic() { return this.contactForm.get('topic'); }
+  get message() { return this.contactForm.get('message'); }
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      console.log('Form Submitted!', this.registerForm.value);
+    if (this.contactForm.valid) {
+      console.log('Contact Form Submitted!', this.contactForm.value);
     } else {
       console.log('Form is invalid');
+      this.contactForm.markAllAsTouched();
     }
   }
 }
