@@ -3,13 +3,31 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    /* background-color: #f5f5f5; Removed to use global dark background */
+    // ensure the container allows the background to show through if there was one on it, 
+    // but the background is on body, so this is fine.
 }
 
 .register-card {
     min-width: 400px;
     max-width: 500px;
     padding: 24px;
+
+    // Glassmorphism effect
+    background: rgba(255, 255, 255, 0.05); // Very transparent white
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 16px; // Softer corners
+    color: white; // Ensure text is white
+
+    // Override Angular Material card background if necessary
+    &.mat-mdc-card {
+        background-color: transparent; // or the rgba value if mat-card sets a color
+        // Note: new MDC components might use --mdc-elevated-card-container-color
+        --mdc-elevated-card-container-color: rgba(255, 255, 255, 0.05);
+        --mdc-outlined-card-container-color: rgba(255, 255, 255, 0.05);
+    }
 }
 
 .full-width {
@@ -20,4 +38,29 @@
 mat-card-title {
     margin-bottom: 24px;
     text-align: center;
+    color: white;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+// Ensure input fields look good on glass
+::ng-deep .mat-mdc-form-field {
+    .mat-mdc-text-field-wrapper {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+    
+    .mat-mdc-form-field-input-control {
+        color: white !important;
+    }
+
+    .mat-mdc-floating-label {
+        color: rgba(255, 255, 255, 0.7) !important;
+    }
+
+    // Border color overrides for outlined appearance
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+        border-color: rgba(255, 255, 255, 0.3) !important;
+    }
 }

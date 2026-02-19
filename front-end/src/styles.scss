@@ -4,11 +4,15 @@
 /* Use regular CSS here */
 body {
   font-family: Roboto, sans-serif;
-  background-color: #001529;
-  /* Deep Azure Blue background */
+  background: linear-gradient(135deg, #001529 0%, #004d7a 100%);
+  /* Deep Azure Blue gradient background */
+  min-height: 100vh;
+  /* Ensure full height */
   color: #e0e0e0;
   /* Light text */
   margin: 0;
+  background-attachment: fixed;
+  /* Fix background during scroll */
 }
 
 /* Custom styles */
