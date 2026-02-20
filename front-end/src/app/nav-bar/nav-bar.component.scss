@@ -1,0 +1,83 @@
+.sidenav-container {
+    height: 100vh;
+    background-color: transparent;
+}
+
+.custom-sidenav {
+    width: 65px;
+    max-width: 80vw;
+    padding: 20px 0;
+    transition: width 0.3s ease-in-out;
+    overflow-x: hidden;
+
+    &.expanded {
+        width: 250px;
+    }
+
+    // Glassmorphism effect copied from contact form
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    color: white;
+
+    .sidenav-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        padding: 0 10px 20px 10px;
+
+        h2 {
+            margin: 0;
+            font-weight: 300;
+            font-size: 2rem;
+            white-space: nowrap;
+        }
+
+        .spacer {
+            flex: 1 1 auto;
+        }
+
+        button {
+            mat-icon {
+                background: linear-gradient(45deg, #07C8F9, #ffffff);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+    }
+
+    ::ng-deep .mat-mdc-list-item {
+        color: white !important;
+
+        .mat-mdc-list-item-title {
+            color: white !important;
+            white-space: nowrap;
+            opacity: 0;
+            animation: fadeIn 0.3s forwards;
+            animation-delay: 0.1s;
+        }
+
+        .mat-icon {
+            color: rgba(255, 255, 255, 0.8) !important;
+            margin-right: 16px !important;
+            padding: 2px;
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1) !important;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.main {
+    padding: 20px;
+}

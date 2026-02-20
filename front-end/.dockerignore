@@ -1,0 +1,8 @@
+node_modules
+.git
+.angular
+dist
+venv
+*.pyc
+Dockerfile
+dev_start.py

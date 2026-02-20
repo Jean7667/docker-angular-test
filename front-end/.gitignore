@@ -40,3 +40,18 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Python virtual environment
+venv/
+__pycache__/
+*.py[cod]
+
+# Angular build artifacts
+dist/
+.angular/
+
+# Dependencies (Never commit these!)
+node_modules/
+
+# Docker logs
+*.log

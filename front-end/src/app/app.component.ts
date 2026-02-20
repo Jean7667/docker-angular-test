@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, MatToolbarModule, MatButtonModule],
+  imports: [
+    RouterOutlet,
+    RouterModule,
+    NavBarComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
