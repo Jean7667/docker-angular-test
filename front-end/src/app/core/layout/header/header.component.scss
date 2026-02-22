@@ -1,0 +1,71 @@
+.header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
+    color: white;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 500;
+    flex: 1;
+}
+
+.search-bar {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+
+    .search-field {
+        width: 100%;
+        max-width: 400px;
+
+        /* Styling to match the glassmorphism theme */
+        ::ng-deep {
+            .mat-mdc-text-field-wrapper {
+                background-color: rgba(255, 255, 255, 0.1) !important;
+                border-radius: 24px;
+            }
+
+            .mat-mdc-form-field-input-control {
+                color: white !important;
+            }
+
+            .mat-mdc-form-field-icon-prefix {
+                color: rgba(255, 255, 255, 0.8) !important;
+            }
+
+            .mdc-notched-outline__leading,
+            .mdc-notched-outline__notch,
+            .mdc-notched-outline__trailing {
+                border-color: rgba(255, 255, 255, 0.3) !important;
+            }
+
+            /* Remove bottom padding if using outline to make it sleeker */
+            .mat-mdc-form-field-subscript-wrapper {
+                display: none;
+            }
+        }
+    }
+}
+
+.header-actions {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}

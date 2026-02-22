@@ -10,7 +10,8 @@
     transition: width 0.3s ease-in-out;
     overflow-x: hidden;
 
-    &.expanded {
+    &.expanded,
+    &.mobile-expanded {
         width: 250px;
     }
 
@@ -38,15 +39,6 @@
         .spacer {
             flex: 1 1 auto;
         }
-
-        button {
-            mat-icon {
-                background: linear-gradient(45deg, #07C8F9, #ffffff);
-                -webkit-background-clip: text;
-                background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-        }
     }
 
     ::ng-deep .mat-mdc-list-item {
@@ -72,6 +64,21 @@
     }
 }
 
+.gradient-icon {
+    background: linear-gradient(45deg, #07C8F9, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mobile-toolbar {
+    background: rgba(40, 50, 70, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 @keyframes fadeIn {
     to {
         opacity: 1;
@@ -79,5 +86,9 @@
 }
 
 .main {
-    padding: 20px;
+    padding: 50px; // Default to larger margin
+
+    @media screen and (max-width: 768px) {
+        padding: 20px; // Reduce margin on smaller screens to maximize space
+    }
 }

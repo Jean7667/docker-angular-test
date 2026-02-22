@@ -1,0 +1,38 @@
+.footer {
+    background: rgba(30, 40, 60, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    /* Push to bottom of flex or grid containers */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+
+    a {
+        color: rgba(255, 255, 255, 0.7);
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: white;
+        }
+    }
+}

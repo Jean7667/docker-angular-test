@@ -1,15 +1,24 @@
 .form-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: stretch; // Stretch the card vertically to fill space
+    min-height: calc(100vh - 100px); // Subtract top and bottom 50px padding
+
+    @media screen and (max-width: 768px) {
+        min-height: calc(100vh - 40px); // Subtract top and bottom 20px padding on small screens
+    }
 }
 
 .contact-card {
     display: flex;
-    width: 900px;
-    max-width: 95vw;
-    min-height: 500px;
+    flex-direction: row; // Explicit flex direction
+    width: 100%; // Take full available width
+    max-width: none; // Remove fixed max-width so it takes full horizontal space
+    min-height: 100%; // Ensure it fills the vertical stretch
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column; // Stack vertically on small screens
+    }
 
     // Glassmorphism effect
     background: rgba(255, 255, 255, 0.1);
@@ -74,11 +83,19 @@
 
 .row {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; // Allow wrapping on small screens
     gap: 16px;
+
+    @media screen and (max-width: 600px) {
+        flex-direction: column; // Stack row inputs vertically on mobile
+        gap: 0; // The form field margin will handle spacing
+    }
 }
 
 .half-width {
-    flex: 1;
+    flex: 1 1 calc(50% - 8px); // Grow, shrink, and take half width minus half gap
+    min-width: 200px; // Prevent getting too small before wrapping
     width: 100%;
 }
 

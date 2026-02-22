@@ -1,3 +1,34 @@
-<app-nav-bar>
-  <router-outlet></router-outlet>
-</app-nav-bar>
+<!-- ============================================== -->
+<!-- CSS GRID SKELETON (Main Layout Container)      -->
+<!-- Responsive grid applied to .app-layout-grid    -->
+<!-- ============================================== -->
+<div class="app-layout-grid">
+
+  <!-- GRID ITEM 1: Header Area (Optional top layout) -->
+  <header class="app-header">
+    <app-header></app-header>
+  </header>
+
+  <!-- GRID ITEM 2: Main Application Content Area -->
+  <main class="app-main-content">
+
+    <!-- Nav Bar covers the sidebar and layout wrapper -->
+    <app-nav-bar>
+
+      <!-- Inner Grid Area: Wrapped Router Outlet -->
+      <div class="router-wrapper">
+        <router-outlet></router-outlet>
+      </div>
+
+    </app-nav-bar>
+  </main>
+
+  <!-- GRID ITEM 3: Footer Area (Optional bottom layout) -->
+  <footer class="app-footer">
+    <app-footer></app-footer>
+  </footer>
+
+</div>
+<!-- ============================================== -->
+<!-- END CSS GRID SKELETON                          -->
+<!-- ============================================== -->

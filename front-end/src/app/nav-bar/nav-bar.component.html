@@ -1,41 +1,51 @@
 <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav mode="side" opened class="custom-sidenav" [class.expanded]="isExpanded">
-        <div class="sidenav-header">
-            <h2 *ngIf="isExpanded">Menu</h2>
-            <div class="spacer" *ngIf="isExpanded"></div>
+    <mat-sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile || isExpanded" class="custom-sidenav"
+        [class.expanded]="!isMobile && isExpanded" [class.mobile-expanded]="isMobile">
+        <div class="sidenav-header" *ngIf="!isMobile || isExpanded">
+            <h2 *ngIf="isExpanded || isMobile">Menu</h2>
+            <div class="spacer" *ngIf="isExpanded || isMobile"></div>
             <button mat-icon-button (click)="toggleSidebar()" aria-label="Toggle menu">
-                <mat-icon>{{ isExpanded ? 'chevron_left' : 'menu' }}</mat-icon>
+                <mat-icon *ngIf="isExpanded || isMobile">chevron_left</mat-icon>
+                <mat-icon *ngIf="!isExpanded && !isMobile" class="gradient-icon">menu</mat-icon>
             </button>
         </div>
         <mat-nav-list>
-            <a mat-list-item routerLink="/">
+            <a mat-list-item routerLink="/" (click)="closeSidebarOnMobile()">
                 <mat-icon matListItemIcon>home</mat-icon>
-                <span matListItemTitle *ngIf="isExpanded">Home</span>
+                <span matListItemTitle *ngIf="isExpanded || isMobile">Home</span>
             </a>
-            <a mat-list-item routerLink="/contact">
+            <a mat-list-item routerLink="/contact" (click)="closeSidebarOnMobile()">
                 <mat-icon matListItemIcon>contact_mail</mat-icon>
-                <span matListItemTitle *ngIf="isExpanded">Contact</span>
+                <span matListItemTitle *ngIf="isExpanded || isMobile">Contact</span>
             </a>
-            <a mat-list-item routerLink="/about">
+            <a mat-list-item routerLink="/about" (click)="closeSidebarOnMobile()">
                 <mat-icon matListItemIcon>info</mat-icon>
-                <span matListItemTitle *ngIf="isExpanded">About</span>
+                <span matListItemTitle *ngIf="isExpanded || isMobile">About</span>
             </a>
-            <a mat-list-item routerLink="/projects">
+            <a mat-list-item routerLink="/projects" (click)="closeSidebarOnMobile()">
                 <mat-icon matListItemIcon>work</mat-icon>
-                <span matListItemTitle *ngIf="isExpanded">Projects</span>
+                <span matListItemTitle *ngIf="isExpanded || isMobile">Projects</span>
             </a>
-            <a mat-list-item routerLink="/books">
+            <a mat-list-item routerLink="/books" (click)="closeSidebarOnMobile()">
                 <mat-icon matListItemIcon>menu_book</mat-icon>
-                <span matListItemTitle *ngIf="isExpanded">Books</span>
+                <span matListItemTitle *ngIf="isExpanded || isMobile">Books</span>
             </a>
-            <a mat-list-item routerLink="/articles">
+            <a mat-list-item routerLink="/articles" (click)="closeSidebarOnMobile()">
                 <mat-icon matListItemIcon>article</mat-icon>
-                <span matListItemTitle *ngIf="isExpanded">Articles</span>
+                <span matListItemTitle *ngIf="isExpanded || isMobile">Articles</span>
             </a>
         </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
+    <mat-sidenav-content [class.mobile-content]="isMobile">
+        <mat-toolbar class="mobile-toolbar" *ngIf="isMobile">
+            <button mat-icon-button (click)="toggleSidebar()" aria-label="Toggle menu">
+                <mat-icon class="gradient-icon">menu</mat-icon>
+            </button>
+            <span class="spacer"></span>
+
+        </mat-toolbar>
+
         <main class="main">
             <div class="content">
                 <ng-content></ng-content>

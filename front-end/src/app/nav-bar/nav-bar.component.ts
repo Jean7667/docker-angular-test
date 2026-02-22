@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -22,10 +22,33 @@ import { MatButtonModule } from '@angular/material/button';
     templateUrl: './nav-bar.component.html',
     styleUrl: './nav-bar.component.scss'
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit {
     isExpanded = false;
+    isMobile = false;
+
+    ngOnInit() {
+        this.checkScreenSize();
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize() {
+        this.checkScreenSize();
+    }
+
+    checkScreenSize() {
+        this.isMobile = window.innerWidth <= 768;
+        if (this.isMobile) {
+            this.isExpanded = false; // ensure closed by default on resize to mobile
+        }
+    }
 
     toggleSidebar() {
         this.isExpanded = !this.isExpanded;
+    }
+
+    closeSidebarOnMobile() {
+        if (this.isMobile) {
+            this.isExpanded = false;
+        }
     }
 }

@@ -1,0 +1,54 @@
+/* Basic CSS Grid Skeleton for Main Component */
+
+/* Grid Container defines the main responsive layout */
+.app-layout-grid {
+    display: grid;
+
+    /* Mobile-first: single column layout */
+    grid-template-columns: 1fr;
+    /* 3 rows: auto-height header, flexible main content, and auto-height footer */
+    grid-template-rows: auto 1fr auto;
+
+    /* Make sure the grid takes at least the full height of the viewport */
+    min-height: 100vh;
+    width: 100%;
+
+    /* Optional: gap between grid items */
+    gap: 0px;
+}
+
+/* Header Section */
+.app-header {
+    grid-row: 1 / 2;
+    grid-column: 1 / -1;
+    /* Stretch across all columns */
+    /* Add styling here */
+}
+
+/* Main Content Section */
+.app-main-content {
+    grid-row: 2 / 3;
+    grid-column: 1 / -1;
+
+    /* Ensure it fills available space properly */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    /* Prevent scrolling issues if navbar handles its own scroll */
+}
+
+/* Footer Section */
+.app-footer {
+    grid-row: 3 / 4;
+    grid-column: 1 / -1;
+    /* Add styling here */
+}
+
+/* Wrapper for the router outlet to take full height */
+.router-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}

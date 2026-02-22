@@ -4,8 +4,10 @@
 /* Use regular CSS here */
 body {
   font-family: Roboto, sans-serif;
-  background: linear-gradient(135deg, #001529 0%, #004d7a 100%);
-  /* Deep Azure Blue gradient background */
+  background-image: url('./app/assets/bckground.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   min-height: 100vh;
   /* Ensure full height */
   color: #e0e0e0;
